@@ -1,2 +1,11 @@
-- @products.each do |product|
-  = product.title
+div class="container"
+  div class="row"
+    - @products.each_slice(3) do |row|
+      - row.each do |product|
+        div class="col-lg-4 col-md-6"
+          div class="card" style="width: 18rem;"
+            img src="https://e0.edimdoma.ru/data/posts/0002/1429/21429-ed4_wide.jpg?1631194036" class="card-img-top" alt="..."
+            div class="card-body"
+              h5 class="card-title" = product.title
+              p class="card-text" = product.body
+              a href="#" class="btn btn-primary" Купить
