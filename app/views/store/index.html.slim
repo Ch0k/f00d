@@ -8,4 +8,4 @@ div class="container"
             div class="card-body"
               h5 class="card-title" = product.title
               p class="card-text" = product.body
-              a href="#" class="btn btn-primary" Купить
+              = button_to "Купить", line_items_path(product_id: product.id), class: "btn btn-primary"
