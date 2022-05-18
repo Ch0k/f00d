@@ -26,11 +26,27 @@
           </li>
         </ul>
         <% if session[:cart_id] != nil %>
-          <%= link_to 'Корзина', cart_path(id: session[:cart_id]) %>
-        <%= image_tag('index.jpeg', size: 40) %>
+          <%= link_to cart_path(id: session[:cart_id]) do %>
+          <div class="position-relative mx-1">
+            <%= image_tag('index.jpeg', size: 40) %>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= @cart.line_items.count %> <span class="visually-hidden">unread messages</span></span>
+          </div>
         <% end %>
-        <%= button_to "Sign_in"  %>
-        <%= button_to "Log_in" %>
+        <% end %>
+        <% if current_user %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.email %></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown04">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <%= button_to "Log_out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Sign_up",  new_user_registration_path , class: "btn btn-primary mr-1" %>
+          <%= link_to "Sign_in", new_user_session_path, class: "btn btn-primary mx-1" %>
+        <% end %>
         <!--<form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form> -->
