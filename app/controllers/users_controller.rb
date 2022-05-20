@@ -20,6 +20,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def orders
+    @user = current_user
+    @orders = @user.orders
+  end
+
   private 
 
   def set_user
