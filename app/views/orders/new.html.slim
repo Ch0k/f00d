@@ -1,0 +1,9 @@
+div class="container"
+  h1 New order
+
+  = render "form", order: @order
+
+  <br>
+
+  div
+    = link_to "Back to products", products_path
