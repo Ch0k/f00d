@@ -1,0 +1,16 @@
+div class="container"
+  table class="table"
+    thead
+      tr
+        th scope="col" #
+        th scope="col" First name
+        th scope="col" Last name
+        th scope="col" Phone
+        th scope="col" Action
+    tbody
+      - @users.each do |user|
+        tr
+          th scope="row" = user.id
+          th  = user.first_name
+          th  = user.last_name
+          th  = user.phone
