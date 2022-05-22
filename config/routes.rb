@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :carts
   resources :line_items
   resources :products
-  resources :users, only: [:index]
+  resources :users, only: [:index, :edit, :update]
   root 'store#index', as: 'store_index'
 end
