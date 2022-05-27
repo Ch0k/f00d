@@ -15,6 +15,7 @@
                     th colspan="2" Total:
                     td class="price" = number_to_currency(cart.total_price)
         div class="actions"
-            = button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"
-            = button_to 'Checkout', new_order_path, method: :get, class: "btn btn-primary"
+            div class="d-grid gap-2 d-md-block"
+                = button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary", style: "display: inline"
+                = button_to 'Checkout', new_order_path, method: :get, class: "btn btn-danger", style: "display: inline"
         /* = button_to 'Checkout', new_order_path, method: :get, class: "checkout"%>
