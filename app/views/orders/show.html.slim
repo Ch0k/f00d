@@ -1,7 +1,8 @@
 div class="container"
-  h2 = @order.id
-  h3 = @order.address
-  h3 = @order.user.email
+  h2 = "Order number - #{@order.id}"
+  h3 = "Order address - #{@order.address}"
+  h3 = "Customer #{@order.user.email}"
+  h3 Products:
   table class="table"
     thead
       tr
