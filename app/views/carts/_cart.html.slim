@@ -19,3 +19,6 @@
                 = button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary", style: "display: inline"
                 = button_to 'Checkout', new_order_path, method: :get, class: "btn btn-danger", style: "display: inline"
         /* = button_to 'Checkout', new_order_path, method: :get, class: "checkout"%>
+- else
+	h3 Cart is empty. 
+	= link_to 'Return to shop', store_index_path
