@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :ensure_cart_isnt_empty, only: :new
 
@@ -57,8 +58,7 @@ class OrdersController < ApplicationController
   end
 
   def user_orders
-    @user = current_user
-    @orders = @user.orders
+    @orders = @user.orders if @user = current_user
   end
 
   private
