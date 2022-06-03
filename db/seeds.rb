@@ -11,16 +11,22 @@ users = User.create!(
     {  email: 'manager@exemple.com', password: '123456', first_name: 'Гона', last_name: 'Тусин', phone: '123' }
   ]
 )
+users[0].add_role :admin
+users[1].add_role :customer
+users[2].add_role :manager
 
-cart = Cart.create
+cart = Cart.create!
 
 orders = Order.create!([
-                         { user_id: users[2].id, address: '123 123 123' }
+                         { user_id: users[1].id, address: '123 123 123' },
+                         { user_id: users[1].id, address: '123 123 123' }
                        ])
 
-line_items = LineItem.create!([
-                                { product_id: products[1].id, cart_id: cart.id },
-                                { product_id: products[2].id, cart_id: cart.id },
-                                { product_id: products[1].id, order_id: orders[1].id },
-                                { product_id: products[2].id, order_id: orders[1].id }
-                              ])
+LineItem.create!([
+                   { product_id: products[1].id, cart_id: cart.id },
+                   { product_id: products[2].id, cart_id: cart.id },
+                   { product_id: products[1].id, order_id: orders[0].id },
+                   { product_id: products[2].id, order_id: orders[0].id },
+                   { product_id: products[1].id, order_id: orders[1].id },
+                   { product_id: products[2].id, order_id: orders[1].id }
+                 ])
