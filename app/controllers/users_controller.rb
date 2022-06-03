@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[ edit update ]
+  before_action :set_user, only: %i[edit update]
 
   def index
+    authorize! :index, User
     @users = User.all
   end
 
   def edit
+    authorize! :update, @user
   end
 
   def update
+    authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_url, notice: "User was successfully updated." }
@@ -22,11 +25,12 @@ class UsersController < ApplicationController
   end
 
   def orders
+    authorize! :read, @user
     @user = current_user
     @orders = @user.orders
   end
 
-  private 
+  private
 
   def set_user
     @user = User.find(params[:id])

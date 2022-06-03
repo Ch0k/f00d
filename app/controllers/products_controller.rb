@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[show edit update destroy]
+
+  authorize_resource
 
   def index
     @products = Product.all
@@ -52,11 +54,12 @@ class ProductsController < ApplicationController
   end
 
   private
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    def product_params
-      params.require(:product).permit(:title, :body, :price)
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:title, :body, :price)
+  end
 end

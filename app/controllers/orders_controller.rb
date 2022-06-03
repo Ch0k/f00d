@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[show edit update destroy]
   before_action :ensure_cart_isnt_empty, only: :new
 
+  authorize_resource
+
   def index
-    #@user = current_user
     @orders = Order.all
   end
 
@@ -58,21 +59,20 @@ class OrdersController < ApplicationController
   end
 
   def user_orders
-    @orders = @user.orders if @user = current_user
+    @orders = @user.orders if @user == current_user
   end
 
   private
-    def ensure_cart_isnt_empty
-      if @cart.line_items.empty?
-        redirect_to store_index_url, notice: 'Your cart is empty'
-      end
-    end
 
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  def ensure_cart_isnt_empty
+    redirect_to store_index_url, notice: 'Your cart is empty' if @cart.line_items.empty?
+  end
 
-    def order_params
-      params.require(:order).permit(:address)
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:address)
+  end
 end

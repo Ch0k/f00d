@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name, :first_name, :phone])
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to store_index_url, notice: exception.message
+  end
 end
