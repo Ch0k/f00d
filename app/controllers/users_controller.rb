@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[edit update]
@@ -15,7 +17,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: "User was successfully updated." }
+        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

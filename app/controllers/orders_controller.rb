@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: %i[show edit update destroy]
@@ -9,15 +11,13 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @order = Order.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @order = Order.new(order_params)
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to store_index_url, notice: "Order was successfully created." }
+        format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to product_url(@order), notice: "Order was successfully updated." }
+        format.html { redirect_to product_url(@order), notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "Order was successfully destroyed." }
+      format.html { redirect_to products_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

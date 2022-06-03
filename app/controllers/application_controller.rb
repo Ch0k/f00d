@@ -1,16 +1,12 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include CurrentCart
   before_action :set_cart
   before_action :configure_permitted_parameters, if: :devise_controller?
-#
-  #def after_sign_in_path_for(resource)
-  #  user_path(resource)
-  #end
-  #
-  #protected
-#
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name, :first_name, :phone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email last_name first_name phone])
   end
 
   rescue_from CanCan::AccessDenied do |exception|
