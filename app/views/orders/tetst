@@ -1,0 +1,9 @@
+/* div class="container"
+  div class="card"
+    div class="card-header"
+      p = @order.id
+    div class="card-body"
+      - @order.line_items.each do |line_item|
+        p class="card-text" = line_item.product.title
+      h5 class="card-title" Special title treatmentS
+      a href="#" class="btn btn-primary" Go somewhere

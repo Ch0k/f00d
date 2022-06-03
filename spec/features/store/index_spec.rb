@@ -6,8 +6,8 @@ feature 'User can see all products', %q{
 
   given!(:products) { create_list(:product, 3) }
 
-  scenario 'User see all products' do
-    visit root_path
+  scenario 'User see all products in store url' do
+    visit store_index_url
     products.each do |product|
       expect(page).to have_content product.title
     end

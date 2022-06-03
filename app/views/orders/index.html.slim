@@ -1,0 +1,16 @@
+div class="container"
+  table class="table"
+    thead
+      tr
+        th scope="col" Order number
+        th scope="col" Customer
+        th scope="col" Price
+        th scope="col" Created at
+        th scope="col" Action
+      - @orders.each do |order|
+        tr
+          td = order.id
+          td = order.user.email
+          td = order.total_price
+          td = order.created_at.strftime("%m/%d/%Y %H:%M")
+          td = link_to "Подробнее", order_path(order)

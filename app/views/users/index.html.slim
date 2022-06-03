@@ -1,0 +1,21 @@
+div class="container"
+  table class="table"
+    thead
+      tr
+        th scope="col" #
+        th scope="col" First name
+        th scope="col" Last name
+        th scope="col" Email
+        th scope="col" Phone
+        th scope="col" Role
+        th scope="col" Action
+    tbody
+      - @users.each do |user|
+        tr
+          th scope="row" = user.id
+          th  = user.first_name
+          th  = user.last_name
+          th  = user.email
+          th  = user.phone
+          th  = user.roles.pluck(:name)
+          th  = link_to 'Edit', edit_user_path(user)

@@ -1,0 +1,20 @@
+div class="container"
+  h2 = "Order number - #{@order.id}"
+  h3 = "Order address - #{@order.address}"
+  h3 = "Customer #{@order.user.email}"
+  h3 Products:
+  table class="table"
+    thead
+      tr
+        th scope="col" Prodcut
+        th scope="col" Quantity
+        th scope="col" Price
+      - @order.line_items.each do |line_item|
+        tr
+          td = line_item.product.title
+          td = line_item.quantity
+          td = number_to_currency(line_item.total_price) 
+    tfoot
+      tr
+        th colspan="2" Total:
+        td class="price" = number_to_currency(@order.total_price)

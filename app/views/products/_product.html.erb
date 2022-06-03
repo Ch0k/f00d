@@ -1,17 +1,18 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Title:</strong>
-    <%= product.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= product.body %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
+<div class="card">
+  <div id="<%= dom_id product %>">
+    <h5 class="card-header">Featured</h5>
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img class="card-img-top" src="https://e0.edimdoma.ru/data/posts/0002/1429/21429-ed4_wide.jpg?1631194036" alt="Card image cap">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.title %></h5>
+          <p class="card-text"><%= product.body %></p>
+          <p class="card-text"><%= product.price %> $</p>
+          <%= link_to 'More', product_path(product), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
