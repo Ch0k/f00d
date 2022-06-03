@@ -14,5 +14,13 @@ FactoryBot.define do
     factory :admin do
       after(:create) {|user| user.add_role(:admin)}
     end
+        
+    factory :manager do
+      after(:create) {|user| user.add_role(:manager)}
+    end
+
+    factory :customer do
+      after(:create) {|user| user.add_role(:customer)}
+    end
   end
 end
