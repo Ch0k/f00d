@@ -1,11 +1,24 @@
 div class="container"
+  div id="tag_cloud"
+   
   div class="row"
-    - @products.each_slice(3) do |row|
-      - row.each do |product|
-        div class="col-lg-4 col-md-6"
-          div class="card" style="width: 18rem;"
-            img src="https://e0.edimdoma.ru/data/posts/0002/1429/21429-ed4_wide.jpg?1631194036" class="card-img-top" alt="..."
-            div class="card-body"
-              h5 class="card-title" = product.title
-              p class="card-text" = product.body
-              = button_to "Купить", line_items_path(product_id: product.id), class: "btn btn-primary"
+    div class="col-2"
+      div class="card"
+        div class="card-body"
+          h4 Filters
+          - tag_cloud Product.tag_counts, %w[s m l] do |tag|
+            = link_to tag.name, tag_path(tag.name), class: "badge bg-primary"
+    div class="col-10"
+      div class="card"
+        div class="row"
+          - @products.each_slice(3) do |row|
+            - row.each do |product|
+              div class="col-lg-4 col-md-4 col-sm-4"
+                div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;"
+                  img src="https://e0.edimdoma.ru/data/posts/0002/1429/21429-ed4_wide.jpg?1631194036" class="card-img-top" alt="..."
+                  div class="card-body"
+                    h5 class="card-title" = product.title
+                    p class="card-text" = product.body
+                    p class="card-text" = product.price
+                    p = raw product.tag_list.map {|t| link_to t, tag_path(t), class: "badge bg-primary"}.join(', ')
+                    = button_to "Купить", line_items_path(product_id: product.id), class: "btn btn-primary"
